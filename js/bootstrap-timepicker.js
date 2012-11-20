@@ -294,9 +294,15 @@
                 break;
             }
 
-            if (e.keyCode !== 0 && e.keyCode !== 8 && e.keyCode !== 9 && e.keyCode !== 46) {
+            if (!this.isValidInputCharacter(e.keyCode)) {
                 e.preventDefault();
             }
+        }
+
+        , isValidInputCharacter: function(keyCode) {
+            var character = String.fromCharCode(keyCode);
+            var valid = [0, 8, 9, 46, 65, 80, 77];
+            return valid.indexOf(keyCode) >= 0 || (character >= '0' && character <= '9');
         }
 
         , setValues: function(time) {
