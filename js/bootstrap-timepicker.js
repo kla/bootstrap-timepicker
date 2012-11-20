@@ -294,15 +294,17 @@
                 break;
             }
 
-            if (!this.isValidInputCharacter(e.keyCode)) {
+            if (!this.isValidInputCharacter(e)) {
                 e.preventDefault();
             }
         }
 
-        , isValidInputCharacter: function(keyCode) {
-            var character = String.fromCharCode(keyCode);
+        , isValidInputCharacter: function(event) {
+            var character = String.fromCharCode(event.keyCode);
             var valid = [0, 8, 9, 46, 65, 80, 77];
-            return valid.indexOf(keyCode) >= 0 || (character >= '0' && character <= '9');
+            return event.ctrlKey ||
+                valid.indexOf(event.keyCode) >= 0 ||
+                (character >= '0' && character <= '9');
         }
 
         , setValues: function(time) {
